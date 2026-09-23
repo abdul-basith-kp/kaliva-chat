@@ -35,14 +35,30 @@
     height: 1rem;
     width: 1rem;
 }
+
 .h-100{
     min-height: 100vh;
+}
+.w-200{
+    width: 200%;
 }
 .w-100{
     width: 100%;
 }
 .w-90{
     width: 90%;
+}
+.w-60{
+    width: 60%;
+}
+.vw-100{
+    width: 100vw;
+}
+.mw-800{
+    max-width: 800px;
+}
+.mw-1000{
+    max-width: 1000px;
 }
 .tac{
     text-align: center;
@@ -68,6 +84,9 @@
 .p2{
     padding: 2rem;
 }
+.pb8{
+    padding-bottom: 8rem;
+}
 .p0p5{
     padding: 0.5rem;
 }
@@ -79,6 +98,9 @@
 }
 .ma{
     margin: auto;
+}
+.mr1{
+    margin-right: 1rem;
 }
 .fc{
     display: flex;
@@ -104,9 +126,7 @@
 }
 .pf{
     position: fixed;
-    width: 60%;
     bottom: 1rem;
-    left: 20%;
 }
 .pr{
     position: relative;
@@ -114,12 +134,28 @@
 .fs1p3{
     font-size: 1.3rem;
 }
+.l0{
+    left: 0;
+}
+.l20{
+    left: 20%;
+}
+.r0{
+    right: 0;
+}
 .message-box{
     background-color: aquamarine;
     padding: 1rem;
     margin: 1rem;
     border-radius: 1rem 1rem 1rem 0;
-    width: 60%;
+    max-width: 50%;
+}
+.name{
+    font-size: 0.8rem;
+    overflow-wrap: break-word;
+}
+.message{
+    font-size: 1.3rem;
 }
 .you{
     margin-left: auto;
@@ -128,4 +164,15 @@
 }
 .test{
     background-color: rebeccapurple;
+}
+
+
+@media (max-width: 800px) {
+    .input-bar{
+        width: 70%;
+    }
+   .input-container{
+    width: 90%;
+    left: 5%;
+   }
 }

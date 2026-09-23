@@ -3,7 +3,7 @@
 const loginButton = document.getElementById('login-btn');
 loginButton.addEventListener('click', (evt)=>{
     evt.preventDefault()
-    window.location.href = 'http://127.0.0.1:5000/login';
+    window.location.href = '/login';
 })
 
 function showErrorMessage(error){
@@ -13,7 +13,7 @@ function showErrorMessage(error){
 
 async function registerUser(name, password) {
 
-    const response = await fetch("http://127.0.0.1:5000/register", {
+    const response = await fetch("/register", {
     method: "POST",
     headers: {
         "Content-Type": "application/json"

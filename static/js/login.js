@@ -5,7 +5,7 @@ const registerButton = document.getElementById('register-btn');
 
 registerButton.addEventListener('click', (evt)=>{
     evt.preventDefault()
-    window.location.href = 'http://127.0.0.1:5000/register'
+    window.location.href = '/register'
 })
 
 

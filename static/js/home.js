@@ -18,13 +18,17 @@ const messageContainer = document.querySelector('.message-container');
 function createMessage(userId, name, message){
     const messageBox = document.createElement('div');
     messageBox.classList.add('message-box')
-    if (userId == currentUserId){
-        messageBox.classList.add('you')
-    }
 
     const nameTag = document.createElement('p');
     nameTag.classList.add('name')
     nameTag.innerText = name;
+
+    if (userId == currentUserId){
+        messageBox.classList.add('you')
+        nameTag.innerText = ''
+    }
+
+   
 
     const messageTag = document.createElement('p');
     messageTag.classList.add('message')
@@ -35,6 +39,10 @@ function createMessage(userId, name, message){
 
     messageContainer.appendChild(messageBox);
     
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+    })
 }
 
 async function loadMessages(){
