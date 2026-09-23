@@ -1,0 +1,32 @@
+
+
+{% extends 'base.html' %}
+
+{% block styles %}
+{% endblock %}
+
+{% block content %}
+    <div class="h-100 fc jcc">
+        <div class="b1 br1 p2">
+            <h1 class="tac">Login Page</h1>
+            <p class="error-message red tac p1"></p>
+            <form class="fc jcc" action="" >
+                <div>
+                    <label class="m1 fc jcc" for="name">Name</label>
+                    <input class="b2  p0p5" type="text" name="name" id="name" required>
+                </div>
+                <div>
+                    <label class="m1 fc jcc" for="password">Password</label>
+                    <input class="b2 p0p5" type="password" name="password" id="password" required>
+                </div>
+                
+                <button class="btn-2 purple-btn m1" id="login-btn">Login</button>
+            </form>
+            <p>Don't have an account? <a id="register-btn" href="">Register</a> </p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %} 
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+{% endblock %}

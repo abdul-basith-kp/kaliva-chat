@@ -1,0 +1,38 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="tac m2">Kaliva Chat</h1>
+    <div class="message-container h-100 b1 m2 br1 pr">
+        <div class="message-box">
+            <p class="name">alex</p>
+            <p class="message">Hello</p>
+        </div>
+        <div class="message-box you">
+            <p class="name">basith</p>
+            <p class="message">hey...</p>
+        </div>
+        <div class="message-box">
+            <p class="name">alex</p>
+            <p class="message">Any plan for today</p>
+        </div>
+        <div class="message-box you">
+            <p class="name">basith</p>
+            <p class="message">Can we go to beach today?</p>
+        </div>
+        <div class="message-box">
+            <p class="name">alex</p>
+            <p class="message">Yay! sure. time?</p>
+        </div>
+        <div class="message-box you">
+            <p class="name">basith</p>
+            <p class="message">we can go at 5pm</p>
+        </div>
+    </div>
+    <div class="pf fr jcc">
+        <input class="w-90 b1 p0p5 br1 m1 fs1p3" type="text">
+        <button class="purple-btn p1 br1 fs1p5">send</button>
+    </div>
+
+    <script src="../static/js/home.js"></script>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block title %}Index Page{% endblock %}
+
+{% block content %}
+
+    <div class="h-100 fc jcc">
+        <div class="fc jcc g1">
+            <button class="btn-1 blue-btn w-100" id="login-btn">Login</button>
+            <button class="btn-1 blue-btn w-100" id="register-btn">Register</button>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/index.js') }}" type="module"></script>
+{% endblock %}
