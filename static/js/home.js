@@ -60,7 +60,11 @@ sendButton.addEventListener('click', ()=>{
     
     if (text){
         inputBar.value = '';
-        socketio.emit('send-message', text)
+        socketio.emit('send-message', text);
+
+        const messageSound = new Audio("/static/sounds/message-sound-02.mp3");
+        messageSound.currentTime = 0;
+        messageSound.play();
     }
 })
 
@@ -71,6 +75,10 @@ window.addEventListener('keypress',(evt)=>{
         if (text){
             inputBar.value = '';
             socketio.emit('send-message', text)
+
+            const messageSound = new Audio("/static/sounds/message-sound-02.mp3");
+            messageSound.currentTime = 0;
+            messageSound.play();
         }
     }
 })
@@ -99,9 +107,17 @@ socketio.on('disconnected', (data)=>{
     })
 })
 
+
 socketio.on('message-created', (data)=>{
     console.log(data);
     createMessage(data.user_id, data.name, data.message)
+
+    if (data.user_id != currentUserId){
+        const messageSound = new Audio("/static/sounds/message-sound.mp3");
+        messageSound.currentTime = 0;
+        messageSound.play();
+    }
+    
 })
 
 socketio.on('error', (data)=>{
