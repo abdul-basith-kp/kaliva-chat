@@ -1,7 +1,7 @@
 
 
 from flask import Flask, render_template, redirect, request, session, url_for
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, emit
 
 from validators.general_validator import GeneralValidator
 from validators.user_validator import UserValidator
@@ -103,6 +103,32 @@ def get_messages():
 def current_user():
     return um.get_user_by_name(session.get('name'))
 
+
+@socketio.on('connect')
+def connect():
+    emit('connected', f"{session.get('name')} connected", broadcast=True)
+    
+@socketio.on('disconnect')
+def connect():
+    emit('disconnected', f"{session.get('name')} disconnected", broadcast=True)
+
+@socketio.on('send-message')
+def send_message(message):
+    
+    user_id = um.get_user_by_name(session.get('name'))['user_id']
+
+    try:
+        mm.create_message(user_id, message)
+        emit('message-created', 
+            {
+                'user_id': user_id,
+                'name': session.get('name'),
+                'message': message
+            },
+            broadcast=True)
+    except Exception as e:
+        emit('error', f'{str(e)}')
+   
 if __name__ == '__main__':
     socketio.run(
         app=app,

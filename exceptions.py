@@ -16,3 +16,7 @@ class DatabaseDataCreationError(ApplicationError):
 
 class DatabaseFetchingError(ApplicationError):
     pass
+class MessageFetchingError(ApplicationError):
+    pass
+class MessageCreationError(ApplicationError):
+    pass

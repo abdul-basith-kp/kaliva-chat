@@ -1,4 +1,6 @@
 
+
+const socketio = io();
 let messages = []
 async function getMessages() {
     const response = await fetch('/get-messages')
@@ -10,7 +12,6 @@ let currentUserId = null;
 async function getCurrentUserId(){
     const response = await fetch('/current-user');
     const data = await response.json();
-    console.log(data);
     currentUserId = data.user_id;
 }
 
@@ -51,5 +52,66 @@ async function loadMessages(){
         createMessage(msg.user_id, msg.name, msg.message)
     }
 }
-getMessages();
-loadMessages();
+
+const sendButton = document.getElementById('send-btn');
+const inputBar = document.querySelector('.input-bar');
+sendButton.addEventListener('click', ()=>{
+    let text = inputBar.value.trim();
+    
+    if (text){
+        inputBar.value = '';
+        socketio.emit('send-message', text)
+    }
+})
+
+window.addEventListener('keypress',(evt)=>{
+    if (evt.key === 'Enter'){
+        let text = inputBar.value.trim();
+    
+        if (text){
+            inputBar.value = '';
+            socketio.emit('send-message', text)
+        }
+    }
+})
+socketio.on('connected', (data)=>{
+    const tag = document.createElement('p');
+    tag.innerText = data;
+    tag.classList.add('connected')
+    messageContainer.appendChild(tag);
+
+        
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+    })
+})
+
+socketio.on('disconnected', (data)=>{
+    const tag = document.createElement('p');
+    tag.innerText = data;
+    tag.classList.add('disconnected')
+    messageContainer.appendChild(tag);
+        
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+    })
+})
+
+socketio.on('message-created', (data)=>{
+    console.log(data);
+    createMessage(data.user_id, data.name, data.message)
+})
+
+socketio.on('error', (data)=>{
+    console.log(data);
+})
+
+async function run() {
+    await getMessages();
+    loadMessages();
+}
+
+run()
+
